@@ -7,9 +7,6 @@ Aplicación local para cruzar la **Nómina**, las **Altas de sobrevivencia** y e
 
 La aplicación activa es un portal web local construido con Flask. Los archivos se reciben en memoria, se procesan con pandas y se devuelven como una vista previa JSON o como un Excel formateado.
 
-> [!CAUTION]
-> Este repositorio contiene archivos compilados en `__pycache__`. Conviene retirarlos del control de versiones antes de publicar o distribuir el proyecto.
-
 ## Contenido
 
 - [Arquitectura](#arquitectura)
@@ -552,7 +549,7 @@ Los libros del período se omiten de este árbol intencionalmente: contienen dat
 
 ## Limitaciones y consideraciones
 
-- **Datos sensibles:** no publiques Nómina, Altas, PBS, salidas generadas ni `__pycache__`. Si ya se confirmaron en Git, agregarlos a `.gitignore` no los elimina del historial.
+- **Datos sensibles:** no publiques Nómina, Altas, PBS ni salidas generadas. Si ya se confirmaron en Git, agregarlos a `.gitignore` no los elimina del historial.
 - **No hay autenticación:** Flask escucha solo en `127.0.0.1` por defecto. No expongas el servidor directamente a una red o a Internet.
 - **Servidor de desarrollo:** `app.run()` no es un servidor de producción.
 - **Esquemas posicionales:** Nómina y Altas dependen del orden de columnas. Una inserción de columna puede cambiar silenciosamente el significado de los datos.
@@ -570,7 +567,7 @@ Los libros del período se omiten de este árbol intencionalmente: contienen dat
 ## Recomendaciones antes de publicar
 
 1. Sustituir los tres libros reales por plantillas sintéticas sin datos personales.
-2. Limpiar los archivos sensibles y `__pycache__` de todo el historial de Git.
+2. Limpiar los archivos sensibles de todo el historial de Git.
 3. Crear un `.gitignore` raíz para libros operativos, salidas, entornos virtuales, cachés y variables de entorno.
 4. Añadir una licencia y definir responsables del tratamiento de datos.
 5. Convertir las reglas críticas en pruebas automatizadas con casos límite.

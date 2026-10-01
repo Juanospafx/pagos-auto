@@ -5,3 +5,7 @@
 ~$*.xlsx
 ~$*.xlsm
 ~$*.xls
+
+# Caché y bytecode de Python
+__pycache__/
+*.py[cod]
