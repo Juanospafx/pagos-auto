@@ -8,7 +8,7 @@ Aplicación local para cruzar la **Nómina**, las **Altas de sobrevivencia** y e
 La aplicación activa es un portal web local construido con Flask. Los archivos se reciben en memoria, se procesan con pandas y se devuelven como una vista previa JSON o como un Excel formateado.
 
 > [!CAUTION]
-> Este repositorio contiene archivos Excel con información personal y financiera, además de archivos compilados en `__pycache__`. Antes de publicarlo en GitHub, elimina o anonimiza esos archivos y retíralos también del historial de Git. Un repositorio privado no sustituye los controles de acceso y tratamiento de datos correspondientes.
+> Este repositorio contiene archivos compilados en `__pycache__`. Conviene retirarlos del control de versiones antes de publicar o distribuir el proyecto.
 
 ## Contenido
 
