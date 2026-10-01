@@ -544,12 +544,3 @@ pagos_auto/
 ├── DataFrame_pagos.py        # Exploración histórica
 └── web_app/                  # Maqueta React/vinext no integrada
 ```
-
-Los libros del período se omiten de este árbol intencionalmente: contienen datos operativos y no deberían formar parte de una publicación pública.
-
-## Limitaciones y consideraciones
-
-- **Validación incompleta:** el control de Altas comprueba menos columnas de las que luego utiliza; un archivo con 11 o 12 columnas fallará al acceder a la posición 13.
-- **Extensión `.xls`:** aparece en el selector del navegador, pero `openpyxl` no soporta el formato binario antiguo `.xls`.
-- **Fechas faltantes de cónyuges:** el flujo activo no emite una categoría específica para todas las fechas ausentes; estos casos deben revisarse manualmente.
-- **Sin pruebas automatizadas:** los archivos llamados `test*.py` son scripts exploratorios. .
