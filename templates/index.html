@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Revisión de pagos de sobrevivencia</title>
+    <meta name="description" content="Genera reportes de pagos y retiradas desde los archivos mensuales.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand"><span class="brand-mark">▤</span><span><strong>Revisión de pagos</strong><small>Pensiones de sobrevivencia</small></span></div>
+        <span class="privacy"><i></i> Los archivos no se almacenan</span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="intro">
+        <span class="eyebrow">Generador de reportes</span>
+        <h1>Carga los archivos del período y obtén la revisión lista.</h1>
+        <p>Adjunta Nómina, Altas y Reporte revisión PBS. Procesa la información, revisa la tabla en pantalla y exporta el Excel solo cuando lo necesites.</p>
+      </section>
+
+      <form id="report-form" class="workspace">
+        <section class="panel upload-panel">
+          <div class="panel-heading"><span class="heading-icon">⇧</span><div><h2>Archivos requeridos</h2><p>Los tres archivos deben pertenecer al mismo período.</p></div></div>
+          <div class="upload-list">
+            <label class="upload-row" data-upload="nomina">
+              <span class="step">1</span><span class="upload-copy"><strong>Nómina</strong><small>Excel mensual con beneficiarios y movimientos</small><em>Seleccionar archivo</em></span>
+              <input required name="nomina" type="file" accept=".xlsx,.xlsm,.xls">
+              <span class="state">Seleccionar</span>
+            </label>
+            <label class="upload-row" data-upload="altas">
+              <span class="step">2</span><span class="upload-copy"><strong>Altas</strong><small>Archivo de altas de sobrevivencia del período</small><em>Seleccionar archivo</em></span>
+              <input required name="altas" type="file" accept=".xlsx,.xlsm,.xls">
+              <span class="state">Seleccionar</span>
+            </label>
+            <label class="upload-row" data-upload="base">
+              <span class="step">3</span><span class="upload-copy"><strong>Reporte revisión PBS</strong><small>Base consolidada con fechas, montos y relaciones</small><em>Seleccionar archivo</em></span>
+              <input required name="base" type="file" accept=".xlsx,.xlsm,.xls">
+              <span class="state">Seleccionar</span>
+            </label>
+          </div>
+        </section>
+
+        <aside class="controls">
+          <section class="panel choice-panel">
+            <h2>¿Qué deseas generar?</h2>
+            <label class="choice selected"><input checked name="tipo" value="pagos" type="radio"><span class="radio-dot"></span><span><strong>Pendientes y no pendientes</strong><small>Incluye status, montos e indexaciones.</small></span></label>
+            <label class="choice"><input name="tipo" value="retiradas" type="radio"><span class="radio-dot"></span><span><strong>Retiradas</strong><small>Valida edad y plazo de la pensión.</small></span></label>
+          </section>
+
+          <section class="action-panel">
+            <label for="fecha_corte">Fecha de corte para indexaciones</label>
+            <input id="fecha_corte" name="fecha_corte" type="date" value="{{ hoy }}">
+            <button id="submit" type="submit" disabled>Ver resultados</button>
+            <p id="helper">Adjunta los tres archivos para continuar.</p>
+            <div id="progress" class="progress" hidden><span></span></div>
+            <div id="message" class="message" role="status" aria-live="polite"></div>
+          </section>
+        </aside>
+      </form>
+
+      <section id="results" class="results-panel" hidden aria-labelledby="results-title">
+        <div class="results-heading">
+          <div>
+            <span class="eyebrow">Resultado procesado</span>
+            <h2 id="results-title">Vista previa del reporte</h2>
+            <p id="results-count"></p>
+          </div>
+          <button id="export" class="export-button" type="button">
+            <span aria-hidden="true">↓</span> Exportar a Excel
+          </button>
+        </div>
+        <div id="summary" class="summary" aria-label="Resumen del reporte"></div>
+        <div class="table-wrap" tabindex="0" aria-label="Tabla de resultados">
+          <table id="results-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="details">
+        <div><strong>Pagos</strong><span>Revisa pendientes, suspendidos y errores antes de exportar el Excel.</span></div>
+        <div><strong>Indexaciones</strong><span>Bienios completos desde la respuesta del seguro hasta la fecha de corte.</span></div>
+        <div><strong>Retiradas</strong><span>Contrasta las retiradas de Nómina con las fechas oficiales de la base.</span></div>
+      </section>
+    </main>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

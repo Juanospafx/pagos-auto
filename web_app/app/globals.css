@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-border: var(--border);
+  --color-input: var(--input); --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * .65); --radius-md: calc(var(--radius) * .8);
+  --radius-lg: var(--radius); --radius-xl: calc(var(--radius) * 1.35); --radius-2xl: calc(var(--radius) * 1.75);
+}
+
+:root {
+  --background: oklch(.975 .009 155); --foreground: oklch(.24 .035 180);
+  --card: oklch(1 0 0); --card-foreground: oklch(.24 .035 180);
+  --popover: oklch(1 0 0); --popover-foreground: oklch(.24 .035 180);
+  --primary: oklch(.36 .07 180); --primary-foreground: oklch(.99 0 0);
+  --secondary: oklch(.94 .025 165); --secondary-foreground: oklch(.29 .05 180);
+  --muted: oklch(.95 .012 165); --muted-foreground: oklch(.52 .025 180);
+  --accent: oklch(.92 .11 115); --accent-foreground: oklch(.28 .05 175);
+  --destructive: oklch(.58 .22 28); --border: oklch(.88 .018 165);
+  --input: oklch(.88 .018 165); --ring: oklch(.53 .1 178); --radius: .78rem;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { @apply font-sans; }
+  body { @apply bg-background text-foreground antialiased; }
+}
+
+body {
+  background-image: radial-gradient(circle at 8% 0%, rgba(64,164,148,.11), transparent 32rem), linear-gradient(180deg, rgba(255,255,255,.7), transparent 24rem);
+}
