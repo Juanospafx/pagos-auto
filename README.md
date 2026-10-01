@@ -549,37 +549,7 @@ Los libros del período se omiten de este árbol intencionalmente: contienen dat
 
 ## Limitaciones y consideraciones
 
-- **Datos sensibles:** no publiques Nómina, Altas, PBS ni salidas generadas. Si ya se confirmaron en Git, agregarlos a `.gitignore` no los elimina del historial.
-- **No hay autenticación:** Flask escucha solo en `127.0.0.1` por defecto. No expongas el servidor directamente a una red o a Internet.
-- **Servidor de desarrollo:** `app.run()` no es un servidor de producción.
-- **Esquemas posicionales:** Nómina y Altas dependen del orden de columnas. Una inserción de columna puede cambiar silenciosamente el significado de los datos.
 - **Validación incompleta:** el control de Altas comprueba menos columnas de las que luego utiliza; un archivo con 11 o 12 columnas fallará al acceder a la posición 13.
 - **Extensión `.xls`:** aparece en el selector del navegador, pero `openpyxl` no soporta el formato binario antiguo `.xls`.
-- **Errores HTTP:** errores de entrada se responden actualmente como 500 en vez de 400.
-- **Retiradas y Altas:** el portal obliga a cargar Altas aunque el cálculo de retiradas no la utiliza.
 - **Fechas faltantes de cónyuges:** el flujo activo no emite una categoría específica para todas las fechas ausentes; estos casos deben revisarse manualmente.
-- **Sin persistencia de resultados:** cambiar archivos, recargar la página o detener el proceso elimina la vista previa.
-- **Doble procesamiento:** visualizar y exportar son dos solicitudes independientes.
-- **Sin pruebas automatizadas:** los archivos llamados `test*.py` son scripts exploratorios. Se recomienda crear pruebas unitarias con datos sintéticos antes de modificar reglas.
-- **Maqueta duplicada:** `web_app/` puede confundir el despliegue; debe integrarse o separarse si se adopta como interfaz futura.
-- **Codificación:** algunos textos del código y de los libros presentan caracteres dañados. Conviene normalizar todo el repositorio a UTF-8 y validar los encabezados de origen.
-
-## Recomendaciones antes de publicar
-
-1. Sustituir los tres libros reales por plantillas sintéticas sin datos personales.
-2. Limpiar los archivos sensibles de todo el historial de Git.
-3. Crear un `.gitignore` raíz para libros operativos, salidas, entornos virtuales, cachés y variables de entorno.
-4. Añadir una licencia y definir responsables del tratamiento de datos.
-5. Convertir las reglas críticas en pruebas automatizadas con casos límite.
-6. Versionar formalmente cualquier cambio de umbral, edad, plazo o equivalencia de identificadores.
-
-## Mantenimiento de las reglas
-
-Cuando cambie un formato de origen o una regla de negocio, actualiza en conjunto:
-
-1. la transformación en `procesador.py`;
-2. las pruebas sintéticas correspondientes;
-3. las tablas de entrada, decisión y salida de este README;
-4. el texto visible del portal, si cambia el significado para el analista.
-
-Las reglas documentadas aquí describen el comportamiento actual del código y no sustituyen la normativa ni la validación del área responsable.
+- **Sin pruebas automatizadas:** los archivos llamados `test*.py` son scripts exploratorios. .
