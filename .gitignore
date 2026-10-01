@@ -1,0 +1,7 @@
+# Archivos Excel operativos y reportes generados
+*.xlsx
+*.xlsm
+*.xls
+~$*.xlsx
+~$*.xlsm
+~$*.xls
